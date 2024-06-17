@@ -2,7 +2,7 @@ package app.training.dto.trainingprogram;
 
 import app.training.dto.trainingsection.TrainingSectionDto;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -14,5 +14,5 @@ public class TrainingProgramDto {
     private String about;
     private byte[] imageData;
     private LocalDate date;
-    private Set<TrainingSectionDto> sections;
+    private List<TrainingSectionDto> sections;
 }

@@ -13,5 +13,4 @@ public class ExerciseDto {
     private String videoRelativePath;
     private URL video;
     private byte[] imageData;
-    private Long trainingSectionId;
 }

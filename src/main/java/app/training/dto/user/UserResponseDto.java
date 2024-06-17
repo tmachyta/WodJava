@@ -13,4 +13,5 @@ public class UserResponseDto {
     private String lastName;
     private LocalDate dateOfBirth;
     private byte[] imageData;
+    private String status;
 }

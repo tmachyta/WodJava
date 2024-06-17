@@ -40,7 +40,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String lastName;
     private LocalDate dateOfBirth;
-
+    private String status;
+    @Column(name = "code")
+    private String verificationCode;
     @Column(name = "image_data")
     private byte[] imageData;
     @ManyToMany(fetch = FetchType.EAGER)

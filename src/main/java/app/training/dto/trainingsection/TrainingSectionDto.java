@@ -1,7 +1,7 @@
 package app.training.dto.trainingsection;
 
-import app.training.model.Exercise;
-import java.util.Set;
+import app.training.dto.exercise.ExerciseDto;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -11,5 +11,5 @@ public class TrainingSectionDto {
     private Long id;
     private String name;
     private byte[] imageData;
-    private Set<Exercise> exercises;
+    private List<ExerciseDto> exercises;
 }

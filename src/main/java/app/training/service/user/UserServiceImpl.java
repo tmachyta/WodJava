@@ -19,6 +19,7 @@ import app.training.service.email.EmailSenderService;
 import app.training.service.role.RoleService;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
+    private static final String CODE
+            = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private static final String STATUS = "Not_Verified";
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
@@ -47,12 +51,17 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setStatus(STATUS);
+        String code = generateCode();
+        user.setVerificationCode(code);
         Role userRole = roleService.getRoleByRoleName(RoleName.USER);
         user.setRoles(new HashSet<>(Set.of(userRole)));
         User savedUser = userRepository.save(user);
         emailSenderService.sendEmail(savedUser.getEmail(),
                 "WODWarrior",
-                "Your registration is successful");
+                "Welcome to WODWarrior family!"
+                        + "You should verify your account in your profile -> account"
+                        + " Your verification code " + code);
         return userMapper.toDto(savedUser);
     }
 
@@ -192,5 +201,15 @@ public class UserServiceImpl implements UserService {
         existedUser.setPassword(passwordEncoder.encode(request.getNewPassword()));
         User savedUser = userRepository.save(existedUser);
         return userMapper.toDto(savedUser);
+    }
+
+    private String generateCode() {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            int index = random.nextInt(CODE.length());
+            sb.append(CODE.charAt(index));
+        }
+        return sb.toString();
     }
 }
