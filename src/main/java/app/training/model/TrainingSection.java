@@ -1,9 +1,9 @@
 package app.training.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,9 +11,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.Objects;
-import java.util.Set;
+import java.util.List;
 import lombok.Data;
+import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -22,6 +22,7 @@ import org.hibernate.annotations.Where;
 @Where(clause = "is_deleted=false")
 @Table(name = "training_sections")
 @Data
+@ToString(exclude = "exercises")
 public class TrainingSection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,11 +32,9 @@ public class TrainingSection {
     private byte[] imageData;
     @ManyToOne
     @JoinColumn(name = "training_program_id")
-    @JsonIgnore
     private TrainingProgram trainingProgram;
-    //@OneToMany(mappedBy = "trainingSection", cascade = CascadeType.ALL)
-    //@JsonIgnore
-    //private Set<Exercise> exercises;
+    @OneToMany(mappedBy = "trainingSection", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Exercise> exercises;
     @Column(name = "is_deleted")
     private boolean isDeleted;
 }

@@ -3,6 +3,7 @@ package app.training.service.email;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,8 @@ public class EmailSenderServiceImpl implements EmailSenderService {
     private static final Logger logger = LoggerFactory.getLogger(EmailSenderServiceImpl.class);
     private final JavaMailSender javaMailSender;
 
-    private String email = "taras.machyta.sa@gmail.com";
+    @Value("${USER_EMAIL}")
+    private String email;
 
     @Override
     public void sendEmail(String toEmail, String subject, String body) {
