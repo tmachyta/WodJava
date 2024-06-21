@@ -10,11 +10,12 @@ import app.training.dto.user.UserUpdatePasswordRequest;
 import app.training.exception.RegistrationException;
 import app.training.model.Role;
 import java.util.List;
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
     UserResponseDto register(UserRegistrationRequest request) throws RegistrationException;
 
-    List<UserResponseDto> getAll();
+    List<UserResponseDto> getAll(Pageable pageable);
 
     void deleteById(Long id);
 

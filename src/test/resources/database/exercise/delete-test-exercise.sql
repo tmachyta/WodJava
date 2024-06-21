@@ -1,0 +1,1 @@
+DELETE FROM exercises WHERE name = 'Exercise1' AND about = 'About1'

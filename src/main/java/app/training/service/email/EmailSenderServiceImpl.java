@@ -29,4 +29,17 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
         logger.info("Mail successfully sent " + subject);
     }
+
+    @Override
+    public void sendEmailToSupport(String fromEmail, String subject, String body) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(fromEmail);
+        message.setTo(email);
+        message.setText(body);
+        message.setSubject(subject);
+
+        javaMailSender.send(message);
+
+        logger.info("Mail successfully sent " + subject);
+    }
 }

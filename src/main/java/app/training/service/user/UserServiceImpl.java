@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,8 +67,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponseDto> getAll() {
-        return userRepository.findAll()
+    public List<UserResponseDto> getAll(Pageable pageable) {
+        return userRepository.findAll(pageable)
                 .stream()
                 .map(userMapper::toDto)
                 .toList();
@@ -75,9 +76,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Can't find user by id " + id));
         userRepository.deleteById(id);
     }
 
