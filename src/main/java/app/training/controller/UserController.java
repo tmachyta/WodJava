@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -36,8 +37,8 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     @Operation(summary = "Get all users", description = "Get a list of all available users")
-    public List<UserResponseDto> findAll() {
-        return userService.getAll();
+    public List<UserResponseDto> findAll(Pageable pageable) {
+        return userService.getAll(pageable);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN')")

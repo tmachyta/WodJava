@@ -1,0 +1,1 @@
+DELETE FROM users WHERE email = 'test3@gmail.com' AND first_name = 'Test' AND last_name = 'Test' AND date_of_birth = '2002-11-05'

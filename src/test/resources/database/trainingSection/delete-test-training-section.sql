@@ -1,0 +1,1 @@
+DELETE FROM training_programs WHERE name = 'Section1'

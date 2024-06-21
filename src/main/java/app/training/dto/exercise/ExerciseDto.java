@@ -1,6 +1,7 @@
 package app.training.dto.exercise;
 
-import java.net.URL;
+import app.training.dto.video.VideoDto;
+import java.util.List;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -10,7 +11,8 @@ public class ExerciseDto {
     private Long id;
     private String name;
     private String about;
-    private String videoRelativePath;
-    private URL video;
+    /*private String videoRelativePath;
+    private URL video;*/
     private byte[] imageData;
+    private List<VideoDto> videos;
 }

@@ -1,0 +1,1 @@
+DELETE FROM videos WHERE name = 'Video1' AND video_relative_path = 'path.mp4'
