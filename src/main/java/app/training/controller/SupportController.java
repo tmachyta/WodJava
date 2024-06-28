@@ -20,7 +20,7 @@ public class SupportController {
     private final SupportService supportService;
 
     @PostMapping("/{email}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Send email to support",
             description = "Send email to support team")
     public void sendEmailToSupport(@PathVariable String email,

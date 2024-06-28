@@ -38,6 +38,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         message.setText(body);
         message.setSubject(subject);
 
+        logger.info("Sending email from: " + fromEmail + " to: " + email);
         javaMailSender.send(message);
 
         logger.info("Mail successfully sent " + subject);

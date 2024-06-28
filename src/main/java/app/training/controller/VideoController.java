@@ -35,7 +35,7 @@ public class VideoController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Get list of Videos",
             description = "Get valid list of videos")
     public List<VideoDto> getAll(@ParameterObject Pageable pageable) {
@@ -43,7 +43,7 @@ public class VideoController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Get Video by ID",
             description = "Get valid Video by ID")
     public VideoDto getById(@PathVariable Long id) {

@@ -22,6 +22,7 @@ public class SupportServiceImpl implements SupportService {
                 .orElseThrow(() ->
                         new EntityNotFoundException("Can't find user by email " + email));
 
+        logger.info("Sending email from user: " + user.getEmail());
         emailSenderService.sendEmailToSupport(user.getEmail(), subject, body);
 
         logger.info("Mail successfully sent " + subject);

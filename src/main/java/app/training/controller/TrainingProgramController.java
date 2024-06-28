@@ -38,7 +38,7 @@ public class TrainingProgramController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Get list of Training Program",
             description = "Get valid list of Training Programs")
     public List<TrainingProgramDto> getAll(@ParameterObject Pageable pageable) {
@@ -46,7 +46,7 @@ public class TrainingProgramController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Get Training Program by ID",
             description = "Get valid Training Program by ID")
     public TrainingProgramDto getById(@PathVariable Long id) {

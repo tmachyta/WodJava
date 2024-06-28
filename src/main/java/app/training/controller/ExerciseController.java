@@ -37,7 +37,7 @@ public class ExerciseController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Get list of Exercises",
             description = "Get valid list of Exercises")
     public List<ExerciseDto> getAll(@ParameterObject Pageable pageable) {
@@ -45,7 +45,7 @@ public class ExerciseController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @Operation(summary = "Get Exercise by ID",
             description = "Get valid Exercise by ID")
     public ExerciseDto getById(@PathVariable Long id) {

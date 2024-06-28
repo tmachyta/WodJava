@@ -44,6 +44,9 @@ public class SecurityConfig {
                         auth -> auth
                                 .requestMatchers("/auth/**")
                                 .permitAll()
+                                .requestMatchers("/images/**", "/js/**",
+                                        "/css/**", "/webjars/**")
+                                .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )

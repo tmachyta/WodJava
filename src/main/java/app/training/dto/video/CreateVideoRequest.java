@@ -1,6 +1,5 @@
 package app.training.dto.video;
 
-import java.net.URL;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -9,6 +8,5 @@ import lombok.experimental.Accessors;
 public class CreateVideoRequest {
     private String name;
     private String videoRelativePath;
-    private URL video;
     private Long exerciseId;
 }

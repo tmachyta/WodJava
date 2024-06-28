@@ -3,6 +3,7 @@ package app.training.service.user;
 import app.training.dto.user.UserRegistrationRequest;
 import app.training.dto.user.UserResponseDto;
 import app.training.dto.user.UserResponseRoleDto;
+import app.training.dto.user.UserUpdateBirthdayRequest;
 import app.training.dto.user.UserUpdateImageRequest;
 import app.training.dto.user.UserUpdateLastNameRequest;
 import app.training.dto.user.UserUpdateNameRequest;
@@ -39,4 +40,10 @@ public interface UserService {
     void deleteByEmail(String email);
 
     UserResponseDto updatePassword(String email, UserUpdatePasswordRequest request);
+
+    void subscribeUser(String email);
+
+    void unSubscribeUser(String email);
+
+    UserResponseDto updateBirthday(String email, UserUpdateBirthdayRequest request);
 }
