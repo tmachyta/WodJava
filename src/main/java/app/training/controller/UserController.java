@@ -3,6 +3,7 @@ package app.training.controller;
 import app.training.dto.user.UserRegistrationRequest;
 import app.training.dto.user.UserResponseDto;
 import app.training.dto.user.UserResponseRoleDto;
+import app.training.dto.user.UserUpdateBirthdayRequest;
 import app.training.dto.user.UserUpdateImageRequest;
 import app.training.dto.user.UserUpdateLastNameRequest;
 import app.training.dto.user.UserUpdateNameRequest;
@@ -48,14 +49,14 @@ public class UserController {
         userService.deleteById(id);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @GetMapping("/me/id/{id}")
     @Operation(summary = "Get user by id", description = "Get available user by id")
     public UserResponseDto getUserById(@PathVariable Long id) {
         return userService.findById(id);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @PutMapping("/me/id/{id}")
     @Operation(summary = "Update user by id", description = "update available user by id")
     public UserResponseDto updateUserInfo(@PathVariable Long id,
@@ -82,14 +83,14 @@ public class UserController {
         return userService.updateRoleByEmail(email, roleName);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @GetMapping("/me/{email}")
     @Operation(summary = "Get user by id", description = "Get available user by id")
     public UserResponseDto getUserByEmail(@PathVariable String email) {
         return userService.findUserByEmail(email);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @PutMapping("/me/{email}")
     @Operation(summary = "Update user image by email",
             description = "Update available user image by email")
@@ -98,7 +99,7 @@ public class UserController {
         return userService.updateImage(email, request);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @PutMapping("/me/name/{email}")
     @Operation(summary = "Update user name by email",
             description = "Update available user name by email")
@@ -107,7 +108,7 @@ public class UserController {
         return userService.updateName(email, request);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @PutMapping("/me/last-name/{email}")
     @Operation(summary = "Update user last-name by email",
             description = "Update available user last-name by email")
@@ -116,7 +117,7 @@ public class UserController {
         return userService.updateLastName(email, request);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @DeleteMapping("/me/{email}")
     @Operation(summary = "Delete user by email",
             description = "Soft delete of available user by email")
@@ -124,7 +125,7 @@ public class UserController {
         userService.deleteByEmail(email);
     }
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @PutMapping("/me/password/{email}")
     @Operation(summary = "Update user password by email",
             description = "Update available user password by email")
@@ -132,5 +133,15 @@ public class UserController {
                                               @RequestBody @Valid
                                               UserUpdatePasswordRequest request) {
         return userService.updatePassword(email, request);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
+    @PutMapping("/me/birthday/{email}")
+    @Operation(summary = "Update user birthday by email",
+            description = "Update available user birthday by email")
+    public UserResponseDto updateUserBirthday(@PathVariable String email,
+                                              @RequestBody @Valid
+                                              UserUpdateBirthdayRequest request) {
+        return userService.updateBirthday(email, request);
     }
 }

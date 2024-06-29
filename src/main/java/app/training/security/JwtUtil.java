@@ -1,5 +1,6 @@
 package app.training.security;
 
+import app.training.service.token.TokenValidationService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -9,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.function.Function;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,8 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long expiration;
 
+    @Autowired
+    private TokenValidationService tokenValidationService;
     private Key secret;
 
     public JwtUtil(@Value ("${jwt.secret}") String secretString) {
@@ -41,7 +45,21 @@ public class JwtUtil {
                     .build()
                     .parseClaimsJws(token);
 
-            return !claimsJws.getBody().getExpiration().before(new Date());
+            return !claimsJws.getBody().getExpiration().before(new Date())
+                    && !tokenValidationService.isBlackListed(token);
+        } catch (JwtException | IllegalArgumentException e) {
+            throw new JwtException("Expired or invalid Jwt Token");
+        }
+    }
+
+    public boolean isExpiredToken(String token) {
+        try {
+            Jws<Claims> claimsJws = Jwts.parserBuilder()
+                    .setSigningKey(secret)
+                    .build()
+                    .parseClaimsJws(token);
+
+            return claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtException("Expired or invalid Jwt Token");
         }

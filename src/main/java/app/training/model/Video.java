@@ -8,8 +8,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-import java.net.URL;
 import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
@@ -26,8 +24,6 @@ public class Video {
     private String name;
     @Column(name = "video_relative_path")
     private String videoRelativePath;
-    @Transient
-    private URL video;
     @ManyToOne
     @JoinColumn(name = "exercise_id")
     private Exercise exercise;

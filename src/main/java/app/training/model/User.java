@@ -45,6 +45,8 @@ public class User implements UserDetails {
     private String verificationCode;
     @Column(name = "image_data")
     private byte[] imageData;
+    @Column(name = "subscription_expiration")
+    private LocalDate subscriptionExpiration;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",

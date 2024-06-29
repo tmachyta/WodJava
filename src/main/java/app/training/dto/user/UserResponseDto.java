@@ -13,6 +13,7 @@ public class UserResponseDto {
     private String lastName;
     private String password;
     private LocalDate dateOfBirth;
+    private LocalDate subscriptionExpiration;
     private byte[] imageData;
     private String status;
 }

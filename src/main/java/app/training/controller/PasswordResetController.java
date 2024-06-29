@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PasswordResetController {
     private final PasswordResetService passwordResetService;
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
     @PutMapping("/reset/{email}")
     @Operation(summary = "Restore user password by email",
             description = "Restore user password by email")

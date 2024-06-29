@@ -3,6 +3,7 @@ package app.training.service.user;
 import app.training.dto.user.UserRegistrationRequest;
 import app.training.dto.user.UserResponseDto;
 import app.training.dto.user.UserResponseRoleDto;
+import app.training.dto.user.UserUpdateBirthdayRequest;
 import app.training.dto.user.UserUpdateImageRequest;
 import app.training.dto.user.UserUpdateLastNameRequest;
 import app.training.dto.user.UserUpdateNameRequest;
@@ -17,6 +18,7 @@ import app.training.repository.RoleRepository;
 import app.training.repository.UserRepository;
 import app.training.service.email.EmailSenderService;
 import app.training.service.role.RoleService;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -59,10 +61,19 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<>(Set.of(userRole)));
         User savedUser = userRepository.save(user);
         emailSenderService.sendEmail(savedUser.getEmail(),
-                "WODWarrior",
-                "Welcome to WODWarrior family!"
-                        + "You should verify your account in your profile -> account"
-                        + " Your verification code " + code);
+                "WODWarrior - Verify Your Account",
+                "Dear " + savedUser.getFirstName() + ",\n\n"
+                        + "Welcome to the WODWarrior family!\n\n"
+                        + "To complete your registration and start your fitness journey with us, "
+                        + "please verify your account.\n\n"
+                        + "Here's your verification code: " + code + "\n\n"
+                        + "Please enter this code in your profile under 'Account Verification'.\n\n"
+                        + "If you have any questions or need assistance, "
+                        + "feel free to reach out to our support team.\n\n"
+                        + "Thank you for joining WODWarrior. "
+                        + "We look forward to helping you achieve your fitness goals!\n\n"
+                        + "Best regards,\n"
+                        + "The WODWarrior Team");
         return userMapper.toDto(savedUser);
     }
 
@@ -197,6 +208,71 @@ public class UserServiceImpl implements UserService {
         }
 
         existedUser.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        User savedUser = userRepository.save(existedUser);
+        return userMapper.toDto(savedUser);
+    }
+
+    @Override
+    public void subscribeUser(String email) {
+        User existedUser = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find user by email " + email));
+        Role userRole = roleService.getRoleByRoleName(RoleName.SUBSCRIBED);
+        LocalDate now = LocalDate.now();
+        LocalDate expiration = now.plusDays(30);
+        existedUser.setSubscriptionExpiration(expiration);
+        existedUser.setRoles(new HashSet<>(Set.of(userRole)));
+        userRepository.save(existedUser);
+        emailSenderService.sendEmail(existedUser.getEmail(),
+                "WODWarrior - Subscription Activated",
+                "Dear " + existedUser.getFirstName() + ",\n\n"
+                        + "Welcome to the WODWarrior family!\n\n"
+                        + "We are excited to inform you that your subscription is now active. "
+                        + "Get ready to embark on an incredible fitness journey with us.\n\n"
+                        + "Here are some things you can do now:\n"
+                        + "- Explore our exclusive training programs\n"
+                        + "Thank you for choosing WODWarrior. "
+                        + "Let's start our training and achieve your fitness goals together!\n\n"
+                        + "Best regards,\n"
+                        + "The WODWarrior Team");
+    }
+
+    @Override
+    public void unSubscribeUser(String email) {
+        User existedUser = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find user by email " + email));
+        LocalDate expirationDate = existedUser.getSubscriptionExpiration();
+        LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
+
+        System.out.println("Current date: " + LocalDate.now());
+        System.out.println("Subscription expiration date: " + expirationDate);
+        System.out.println("Thirty days ago date: " + thirtyDaysAgo);
+
+        if (expirationDate != null && expirationDate.isBefore(thirtyDaysAgo)) {
+            Role userRole = roleService.getRoleByRoleName(RoleName.USER);
+            existedUser.setRoles(new HashSet<>(Set.of(userRole)));
+            userRepository.save(existedUser);
+            emailSenderService.sendEmail(existedUser.getEmail(),
+                    "WODWarrior",
+                    "Dear " + existedUser.getFirstName() + ",\n\n"
+                            + "We wanted to let you know that your subscription "
+                            + "to WODWarrior has expired. "
+                            + "To continue enjoying our training programs and exclusive content, "
+                            + "please renew your subscription as soon as possible.\n\n"
+                            + "Thank you for being a valued member of the WODWarrior family!\n\n"
+                            + "Best regards,\n"
+                            + "The WODWarrior Team");
+        }
+    }
+
+    @Override
+    public UserResponseDto updateBirthday(String email, UserUpdateBirthdayRequest request) {
+        User existedUser = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find user by email " + email));
+
+        existedUser.setDateOfBirth(request.getDateOfBirth());
         User savedUser = userRepository.save(existedUser);
         return userMapper.toDto(savedUser);
     }

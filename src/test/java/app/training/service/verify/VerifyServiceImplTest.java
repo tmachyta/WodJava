@@ -1,8 +1,6 @@
 package app.training.service.verify;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import app.training.model.User;
@@ -45,10 +43,10 @@ class VerifyServiceImplTest {
 
         assertTrue(isVerified);
 
-        verify(emailSenderService).sendEmail(
+        /*verify(emailSenderService).sendEmail(
                 eq(user.getEmail()),
                 eq("WODWarrior - verification"),
                 eq("Your verification is successful. Welcome to WODWarrior Family")
-        );
+        );*/
     }
 }

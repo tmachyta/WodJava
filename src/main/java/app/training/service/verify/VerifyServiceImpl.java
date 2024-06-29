@@ -22,8 +22,19 @@ public class VerifyServiceImpl implements VerifyService {
         existedUser.setStatus(STATUS);
         User savedUser = userRepository.save(existedUser);
         emailSenderService.sendEmail(savedUser.getEmail(),
-                "WODWarrior - verification",
-                "Your verification is successful. Welcome to WODWarrior Family");
+                "WODWarrior - Verification Successful",
+                "Dear " + savedUser.getFirstName() + ",\n\n"
+                        + "Congratulations! Your account has been successfully verified.\n\n"
+                        + "Welcome to the WODWarrior family! We're excited to have you on board "
+                        + "and can't wait to help you achieve your fitness goals.\n\n"
+                        + "Here are some things you can do now:\n"
+                        + "- Explore our exclusive training programs\n"
+                        + "- Join live workout sessions\n"
+                        + "- Access personalized fitness plans\n\n"
+                        + "Thank you for choosing WODWarrior. "
+                        + "Let's get started on your fitness journey!\n\n"
+                        + "Best regards,\n"
+                        + "The WODWarrior Team");
         return true;
     }
 }
