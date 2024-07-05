@@ -67,7 +67,7 @@ async function handleSubmit(e) {
         elements,
         confirmParams: {
             // Make sure to change this to your payment completion page
-            return_url: "http://192.168.0.100:8080/auth/payment",
+            return_url: "http://44.202.15.33/auth/payment",
             receipt_email: emailAddress
         },
     });

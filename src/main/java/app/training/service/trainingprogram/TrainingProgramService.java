@@ -3,6 +3,7 @@ package app.training.service.trainingprogram;
 import app.training.dto.trainingprogram.CreateTrainingProgramRequest;
 import app.training.dto.trainingprogram.TrainingProgramDto;
 import app.training.dto.trainingprogram.UpdateTrainingProgramRequest;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 
@@ -16,4 +17,6 @@ public interface TrainingProgramService {
     void deleteById(Long id);
 
     TrainingProgramDto updateById(Long id, UpdateTrainingProgramRequest request);
+
+    List<TrainingProgramDto> getAllByDate(LocalDate date, Pageable pageable);
 }

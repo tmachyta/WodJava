@@ -1,0 +1,145 @@
+2024-07-03 13:54:46 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 13:54:46 INFO  a.t.TestTrainingAppApplication - Starting TestTrainingAppApplication using Java 22.0.1 with PID 8097 (/Users/machytataras/IdeaProjects/WodJava/target/classes started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 13:54:46 INFO  a.t.TestTrainingAppApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-03 13:54:47 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03 13:54:47 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 91 ms. Found 6 JPA repository interfaces.
+2024-07-03 13:54:47 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-07-03 13:54:47 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-03 13:54:47 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-03 13:54:47 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2024-07-03 13:54:48 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-03 13:54:48 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1805 ms
+2024-07-03 13:54:48 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03 13:54:48 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2024-07-03 13:54:48 INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-07-03 13:54:48 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03 13:54:48 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-03 13:54:48 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31f1b268
+2024-07-03 13:54:48 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-03 13:54:49 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03 13:54:50 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03 13:54:50 DEBUG o.s.web.filter.CorsFilter - Filter 'corsFilter' configured for use
+2024-07-03 13:54:50 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03 13:54:51 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 50 mappings in 'requestMappingHandlerMapping'
+2024-07-03 13:54:51 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-07-03 13:54:51 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5a4833ab, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1a920154, org.springframework.security.web.context.SecurityContextHolderFilter@37ecc472, org.springframework.security.web.header.HeaderWriterFilter@4b1ef6a, org.springframework.security.web.authentication.logout.LogoutFilter@48971262, app.training.security.JwtAuthenticationFilter$$SpringCGLIB$$0@16ca4532, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@50c20b15, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76ac3ad0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ff5711b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e870ac9, org.springframework.security.web.session.SessionManagementFilter@39153b05, org.springframework.security.web.access.ExceptionTranslationFilter@11fb4f69, org.springframework.security.web.access.intercept.AuthorizationFilter@59845cb3]
+2024-07-03 13:54:51 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-03 13:54:51 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-03 13:54:51 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-03 13:54:51 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-07-03 13:54:51 INFO  a.t.TestTrainingAppApplication - Started TestTrainingAppApplication in 5.8 seconds (process running for 6.909)
+2024-07-03 13:54:53 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03 13:54:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-07-03 13:54:53 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-07-03 15:39:37 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 15:39:37 INFO  a.t.TestTrainingAppApplicationTests - Starting TestTrainingAppApplicationTests using Java 21 with PID 8701 (started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 15:39:37 INFO  a.t.TestTrainingAppApplicationTests - The following 1 profile is active: "test"
+2024-07-03 15:39:37 INFO  a.t.TestTrainingAppApplicationTests - Started TestTrainingAppApplicationTests in 0.21 seconds (process running for 0.739)
+2024-07-03 15:39:39 INFO  a.t.s.support.SupportServiceImpl - Sending email from user: test@gmail.com
+2024-07-03 15:39:39 INFO  a.t.s.support.SupportServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:39:39 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:39:39 INFO  a.t.s.email.EmailSenderServiceImpl - Sending email from: test@gmail.com to: null
+2024-07-03 15:39:39 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:40:45 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 15:40:45 INFO  a.t.TestTrainingAppApplicationTests - Starting TestTrainingAppApplicationTests using Java 21 with PID 8780 (started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 15:40:45 INFO  a.t.TestTrainingAppApplicationTests - The following 1 profile is active: "test"
+2024-07-03 15:40:45 INFO  a.t.TestTrainingAppApplicationTests - Started TestTrainingAppApplicationTests in 0.202 seconds (process running for 0.644)
+2024-07-03 15:40:46 INFO  a.t.s.support.SupportServiceImpl - Sending email from user: test@gmail.com
+2024-07-03 15:40:46 INFO  a.t.s.support.SupportServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:40:46 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:40:46 INFO  a.t.s.email.EmailSenderServiceImpl - Sending email from: test@gmail.com to: null
+2024-07-03 15:40:46 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:41:56 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 15:41:56 INFO  a.t.TestTrainingAppApplicationTests - Starting TestTrainingAppApplicationTests using Java 21 with PID 8879 (started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 15:41:56 INFO  a.t.TestTrainingAppApplicationTests - The following 1 profile is active: "test"
+2024-07-03 15:41:56 INFO  a.t.TestTrainingAppApplicationTests - Started TestTrainingAppApplicationTests in 0.21 seconds (process running for 0.681)
+2024-07-03 15:41:57 INFO  a.t.s.support.SupportServiceImpl - Sending email from user: test@gmail.com
+2024-07-03 15:41:57 INFO  a.t.s.support.SupportServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:41:57 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:41:57 INFO  a.t.s.email.EmailSenderServiceImpl - Sending email from: test@gmail.com to: null
+2024-07-03 15:41:57 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:42:35 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 15:42:35 INFO  a.t.TestTrainingAppApplication - Starting TestTrainingAppApplication using Java 22.0.1 with PID 8905 (/Users/machytataras/IdeaProjects/WodJava/target/classes started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 15:42:35 INFO  a.t.TestTrainingAppApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-03 15:42:36 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03 15:42:36 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 88 ms. Found 6 JPA repository interfaces.
+2024-07-03 15:42:36 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-07-03 15:42:36 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-03 15:42:36 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-03 15:42:36 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2024-07-03 15:42:36 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-03 15:42:36 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1648 ms
+2024-07-03 15:42:37 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03 15:42:37 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2024-07-03 15:42:37 INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-07-03 15:42:37 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03 15:42:37 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-03 15:42:37 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e2c8ef
+2024-07-03 15:42:37 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-03 15:42:38 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03 15:42:38 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03 15:42:39 DEBUG o.s.web.filter.CorsFilter - Filter 'corsFilter' configured for use
+2024-07-03 15:42:40 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03 15:42:40 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 50 mappings in 'requestMappingHandlerMapping'
+2024-07-03 15:42:40 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-07-03 15:42:40 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1a920154, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@e870ac9, org.springframework.security.web.context.SecurityContextHolderFilter@27311c99, org.springframework.security.web.header.HeaderWriterFilter@57596d71, org.springframework.security.web.authentication.logout.LogoutFilter@19d043a8, app.training.security.JwtAuthenticationFilter$$SpringCGLIB$$0@4fc1eee5, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@6dcf39c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e6be9f0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@608f79a8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6b78cbee, org.springframework.security.web.session.SessionManagementFilter@26fee641, org.springframework.security.web.access.ExceptionTranslationFilter@618d2191, org.springframework.security.web.access.intercept.AuthorizationFilter@63ee2891]
+2024-07-03 15:42:40 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-03 15:42:40 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-03 15:42:40 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-03 15:42:40 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-07-03 15:42:40 INFO  a.t.TestTrainingAppApplication - Started TestTrainingAppApplication in 5.985 seconds (process running for 7.042)
+2024-07-03 15:42:45 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03 15:42:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-07-03 15:42:45 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-07-03 15:45:23 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 15:45:23 INFO  a.t.TestTrainingAppApplication - Starting TestTrainingAppApplication using Java 22.0.1 with PID 8954 (/Users/machytataras/IdeaProjects/WodJava/target/classes started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 15:45:23 INFO  a.t.TestTrainingAppApplication - No active profile set, falling back to 1 default profile: "default"
+2024-07-03 15:45:24 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-03 15:45:24 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 84 ms. Found 6 JPA repository interfaces.
+2024-07-03 15:45:25 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2024-07-03 15:45:25 INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2024-07-03 15:45:25 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-07-03 15:45:25 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2024-07-03 15:45:25 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-07-03 15:45:25 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1774 ms
+2024-07-03 15:45:25 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-03 15:45:25 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.2.13.Final
+2024-07-03 15:45:25 INFO  org.hibernate.cfg.Environment - HHH000406: Using bytecode reflection optimizer
+2024-07-03 15:45:25 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-03 15:45:25 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-07-03 15:45:25 WARN  c.z.hikari.util.DriverDataSource - Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2024-07-03 15:45:26 INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@56499781
+2024-07-03 15:45:26 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-07-03 15:45:27 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-03 15:45:27 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03 15:45:27 DEBUG o.s.web.filter.CorsFilter - Filter 'corsFilter' configured for use
+2024-07-03 15:45:28 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-03 15:45:28 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerMapping - 50 mappings in 'requestMappingHandlerMapping'
+2024-07-03 15:45:28 DEBUG o.s.w.s.h.SimpleUrlHandlerMapping - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2024-07-03 15:45:28 INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1c0f32ad, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a4833ab, org.springframework.security.web.context.SecurityContextHolderFilter@32fb4a87, org.springframework.security.web.header.HeaderWriterFilter@618d2191, org.springframework.security.web.authentication.logout.LogoutFilter@435848de, app.training.security.JwtAuthenticationFilter$$SpringCGLIB$$0@599fab92, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@2f1d2384, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@27311c99, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1e6be9f0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1a920154, org.springframework.security.web.session.SessionManagementFilter@3dc70aa0, org.springframework.security.web.access.ExceptionTranslationFilter@63f609a4, org.springframework.security.web.access.intercept.AuthorizationFilter@1fcb01f8]
+2024-07-03 15:45:28 DEBUG o.s.w.s.m.m.a.RequestMappingHandlerAdapter - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2024-07-03 15:45:28 DEBUG o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - ControllerAdvice beans: 2 @ExceptionHandler, 1 ResponseBodyAdvice
+2024-07-03 15:45:28 INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2024-07-03 15:45:29 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2024-07-03 15:45:29 INFO  a.t.TestTrainingAppApplication - Started TestTrainingAppApplication in 6.196 seconds (process running for 7.202)
+2024-07-03 15:45:36 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-03 15:45:36 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-07-03 15:45:36 INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-07-03 15:56:30 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 15:56:30 INFO  a.t.TestTrainingAppApplicationTests - Starting TestTrainingAppApplicationTests using Java 21 with PID 9093 (started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 15:56:30 INFO  a.t.TestTrainingAppApplicationTests - The following 1 profile is active: "test"
+2024-07-03 15:56:30 INFO  a.t.TestTrainingAppApplicationTests - Started TestTrainingAppApplicationTests in 0.216 seconds (process running for 0.697)
+2024-07-03 15:56:31 INFO  a.t.s.support.SupportServiceImpl - Sending email from user: test@gmail.com
+2024-07-03 15:56:31 INFO  a.t.s.support.SupportServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:56:32 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 15:56:32 INFO  a.t.s.email.EmailSenderServiceImpl - Sending email from: test@gmail.com to: null
+2024-07-03 15:56:32 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 16:31:37 INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2024-07-03 16:31:37 INFO  a.t.TestTrainingAppApplicationTests - Starting TestTrainingAppApplicationTests using Java 21 with PID 10250 (started by machytataras in /Users/machytataras/IdeaProjects/WodJava)
+2024-07-03 16:31:37 INFO  a.t.TestTrainingAppApplicationTests - The following 1 profile is active: "test"
+2024-07-03 16:31:37 INFO  a.t.TestTrainingAppApplicationTests - Started TestTrainingAppApplicationTests in 0.224 seconds (process running for 0.703)
+2024-07-03 16:31:38 INFO  a.t.s.support.SupportServiceImpl - Sending email from user: test@gmail.com
+2024-07-03 16:31:38 INFO  a.t.s.support.SupportServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 16:31:38 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
+2024-07-03 16:31:38 INFO  a.t.s.email.EmailSenderServiceImpl - Sending email from: test@gmail.com to: null
+2024-07-03 16:31:38 INFO  a.t.s.email.EmailSenderServiceImpl - Mail successfully sent WODWarrior
