@@ -34,8 +34,8 @@ services:
       "spring.datasource.password" : "$MYSQL_PASSWORD",
       "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
       "spring.datasource.driver-class-name" : "com.mysql.cj.jdbc.Driver",
-      "stripe.api.publicKey" : "pk_test_51PUV4AD5bGyKmDzRtXixx2Eoaia3ebeINpOw89BQxtKQOrHefu5CdFCuvUTtTWF8vbhHKKmF35X0ygymvLjWiFDf0063Zp6DJC",
-      "stripe.api.secretKey" : "sk_test_51PUV4AD5bGyKmDzRz916slX35Nv2IOGHFtG5ymg9r46TMnqpkAki7thfaIbra7fT8US3o4dWG3K3m4r6Y7DY6QCI00CP6ZVE86",
+      "stripe.api.publicKey" : ,
+      "stripe.api.secretKey" : ,
       "spring.mail.username" : "$USER_EMAIL",
       "jwt.expiration" : "604800000",
       "jwt.secret" : "hellomatesfasdasfgmmnvbuiaspkfpojma"
