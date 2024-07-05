@@ -7,6 +7,7 @@ import app.training.service.trainingprogram.TrainingProgramService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
@@ -67,5 +68,14 @@ public class TrainingProgramController {
     public TrainingProgramDto updateById(@PathVariable Long id,
                                          @RequestBody UpdateTrainingProgramRequest request) {
         return trainingProgramService.updateById(id, request);
+    }
+
+    @GetMapping("/by-date/{date}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
+    @Operation(summary = "Get list of Training Program",
+            description = "Get valid list of Training Programs by date")
+    public List<TrainingProgramDto> getAllByDate(@PathVariable LocalDate date,
+                                                 @ParameterObject Pageable pageable) {
+        return trainingProgramService.getAllByDate(date, pageable);
     }
 }

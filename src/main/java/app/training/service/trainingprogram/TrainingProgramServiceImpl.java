@@ -9,6 +9,7 @@ import app.training.mapper.TrainingSectionMapper;
 import app.training.model.TrainingProgram;
 import app.training.repository.TrainingProgramRepository;
 import app.training.repository.TrainingSectionRepository;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ public class TrainingProgramServiceImpl implements TrainingProgramService {
         return trainingProgramRepository.findAll(pageable)
                 .stream()
                 .map(trainingProgramMapper::toDto)
+                .limit(1)
                 .toList();
     }
 
@@ -59,5 +61,13 @@ public class TrainingProgramServiceImpl implements TrainingProgramService {
         existedTrainingProgram.setAbout(request.getAbout());
         existedTrainingProgram.setImageData(request.getImageData());
         return trainingProgramMapper.toDto(trainingProgramRepository.save(existedTrainingProgram));
+    }
+
+    @Override
+    public List<TrainingProgramDto> getAllByDate(LocalDate date, Pageable pageable) {
+        return trainingProgramRepository.findAllByDate(date, pageable)
+                .stream()
+                .map(trainingProgramMapper::toDto)
+                .toList();
     }
 }
