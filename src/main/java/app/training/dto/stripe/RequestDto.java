@@ -11,6 +11,5 @@ import lombok.NoArgsConstructor;
 public class RequestDto {
     @Email
     private String email;
-
     private String paymentIntentId;
 }

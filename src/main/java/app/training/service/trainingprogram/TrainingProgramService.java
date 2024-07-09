@@ -19,4 +19,6 @@ public interface TrainingProgramService {
     TrainingProgramDto updateById(Long id, UpdateTrainingProgramRequest request);
 
     List<TrainingProgramDto> getAllByDate(LocalDate date, Pageable pageable);
+
+    TrainingProgramDto findByDate(LocalDate date);
 }

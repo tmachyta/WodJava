@@ -7,6 +7,7 @@ import app.training.service.trainingprogram.TrainingProgramService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,8 @@ public class TrainingProgramController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     @Operation(summary = "Save Training Program to repository",
             description = "Save valid Training Program to repository")
-    public TrainingProgramDto save(@RequestBody @Valid CreateTrainingProgramRequest request) {
+    public TrainingProgramDto save(@RequestBody @Valid CreateTrainingProgramRequest request)
+            throws IOException {
         return trainingProgramService.create(request);
     }
 
@@ -77,5 +79,13 @@ public class TrainingProgramController {
     public List<TrainingProgramDto> getAllByDate(@PathVariable LocalDate date,
                                                  @ParameterObject Pageable pageable) {
         return trainingProgramService.getAllByDate(date, pageable);
+    }
+
+    @GetMapping("/program-by-date/{date}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'SUBSCRIBED')")
+    @Operation(summary = "Get Training Program by date",
+            description = "Get valid Training Program by date")
+    public TrainingProgramDto getByDate(@PathVariable LocalDate date) {
+        return trainingProgramService.findByDate(date);
     }
 }

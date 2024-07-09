@@ -11,8 +11,6 @@ public class ExerciseDto {
     private Long id;
     private String name;
     private String about;
-    /*private String videoRelativePath;
-    private URL video;*/
     private byte[] imageData;
     private List<VideoDto> videos;
 }

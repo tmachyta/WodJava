@@ -18,10 +18,10 @@ import app.training.repository.RoleRepository;
 import app.training.repository.UserRepository;
 import app.training.service.email.EmailSenderService;
 import app.training.service.role.RoleService;
+import app.training.utils.VerificationCodeUtil;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -32,9 +32,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private static final String CODE
-            = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final String STATUS = "Not_Verified";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
@@ -55,25 +54,35 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.toModel(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setStatus(STATUS);
-        String code = generateCode();
+        String code = VerificationCodeUtil.generateCode();
         user.setVerificationCode(code);
         Role userRole = roleService.getRoleByRoleName(RoleName.USER);
         user.setRoles(new HashSet<>(Set.of(userRole)));
         User savedUser = userRepository.save(user);
+        String emailBody = """
+                Dear %s,
+                
+                Welcome to the WODWarrior family!
+                
+                To complete your registration and start your fitness journey with us,
+                please verify your account.
+                Here's your verification code: %s
+
+                Please enter this code in your profile under 'Account Verification'.
+
+                If you have any questions or need assistance,
+                feel free to reach out to our support team.
+
+                Thank you for joining WODWarrior.
+                We look forward to helping you achieve your fitness goals!
+
+                Best regards,
+                The WODWarrior Team
+    
+                """.formatted(savedUser.getFirstName(), code).replace("\n", LINE_SEPARATOR);
         emailSenderService.sendEmail(savedUser.getEmail(),
                 "WODWarrior - Verify Your Account",
-                "Dear " + savedUser.getFirstName() + ",\n\n"
-                        + "Welcome to the WODWarrior family!\n\n"
-                        + "To complete your registration and start your fitness journey with us, "
-                        + "please verify your account.\n\n"
-                        + "Here's your verification code: " + code + "\n\n"
-                        + "Please enter this code in your profile under 'Account Verification'.\n\n"
-                        + "If you have any questions or need assistance, "
-                        + "feel free to reach out to our support team.\n\n"
-                        + "Thank you for joining WODWarrior. "
-                        + "We look forward to helping you achieve your fitness goals!\n\n"
-                        + "Best regards,\n"
-                        + "The WODWarrior Team");
+                emailBody);
         return userMapper.toDto(savedUser);
     }
 
@@ -223,18 +232,31 @@ public class UserServiceImpl implements UserService {
         existedUser.setSubscriptionExpiration(expiration);
         existedUser.setRoles(new HashSet<>(Set.of(userRole)));
         userRepository.save(existedUser);
+        String body = """
+                Dear %s,
+                
+                Welcome to the WODWarrior family!
+                
+                We are excited to inform you that your subscription is now active,
+                
+                Get ready to embark on an incredible fitness journey with us.
+                
+                Here are some things you can do now:
+                
+                - Explore our exclusive training programs.
+                
+                Thank you for choosing WODWarrior.
+                
+                Let's start our training and achieve your fitness goals together!
+                
+                Best regards,
+                
+                The WODWarrior Team
+                
+                """.formatted(existedUser.getFirstName()).replace("\n", LINE_SEPARATOR);
         emailSenderService.sendEmail(existedUser.getEmail(),
                 "WODWarrior - Subscription Activated",
-                "Dear " + existedUser.getFirstName() + ",\n\n"
-                        + "Welcome to the WODWarrior family!\n\n"
-                        + "We are excited to inform you that your subscription is now active. "
-                        + "Get ready to embark on an incredible fitness journey with us.\n\n"
-                        + "Here are some things you can do now:\n"
-                        + "- Explore our exclusive training programs\n"
-                        + "Thank you for choosing WODWarrior. "
-                        + "Let's start our training and achieve your fitness goals together!\n\n"
-                        + "Best regards,\n"
-                        + "The WODWarrior Team");
+                body);
     }
 
     @Override
@@ -245,24 +267,31 @@ public class UserServiceImpl implements UserService {
         LocalDate expirationDate = existedUser.getSubscriptionExpiration();
         LocalDate thirtyDaysAgo = LocalDate.now().minusDays(30);
 
-        System.out.println("Current date: " + LocalDate.now());
-        System.out.println("Subscription expiration date: " + expirationDate);
-        System.out.println("Thirty days ago date: " + thirtyDaysAgo);
-
         if (expirationDate != null && expirationDate.isBefore(thirtyDaysAgo)) {
             Role userRole = roleService.getRoleByRoleName(RoleName.USER);
             existedUser.setRoles(new HashSet<>(Set.of(userRole)));
             userRepository.save(existedUser);
+            String body = """
+                    Dear %s,
+                    
+                    We wanted to let you know that your subscription
+                    
+                    to WODWarrior has expired
+                    
+                    To continue enjoying our training programs and exclusive content,
+                    
+                    please renew your subscription as soon as possible
+                    
+                    Thank you for being a valued member of the WODWarrior family
+                    
+                    Best regards
+                    
+                    The WODWarrior Team
+                    
+                    """.formatted(existedUser.getFirstName()).replace("\n", LINE_SEPARATOR);
             emailSenderService.sendEmail(existedUser.getEmail(),
                     "WODWarrior",
-                    "Dear " + existedUser.getFirstName() + ",\n\n"
-                            + "We wanted to let you know that your subscription "
-                            + "to WODWarrior has expired. "
-                            + "To continue enjoying our training programs and exclusive content, "
-                            + "please renew your subscription as soon as possible.\n\n"
-                            + "Thank you for being a valued member of the WODWarrior family!\n\n"
-                            + "Best regards,\n"
-                            + "The WODWarrior Team");
+                    body);
         }
     }
 
@@ -275,15 +304,5 @@ public class UserServiceImpl implements UserService {
         existedUser.setDateOfBirth(request.getDateOfBirth());
         User savedUser = userRepository.save(existedUser);
         return userMapper.toDto(savedUser);
-    }
-
-    private String generateCode() {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            int index = random.nextInt(CODE.length());
-            sb.append(CODE.charAt(index));
-        }
-        return sb.toString();
     }
 }

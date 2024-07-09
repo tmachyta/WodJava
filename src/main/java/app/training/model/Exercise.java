@@ -31,10 +31,6 @@ public class Exercise {
     private String about;
     @Column(name = "image_data", columnDefinition = "BLOB")
     private byte[] imageData;
-    /*@Column(name = "video_relative_path")
-    private String videoRelativePath;
-    @Transient
-    private URL video;*/
     @ManyToOne
     @JoinColumn(name = "training_section_id")
     private TrainingSection trainingSection;

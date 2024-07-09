@@ -17,7 +17,7 @@ public class TestTrainingAppApplication {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new WodWarriorSupportBot());
         } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Unable to start bot " + e);
         }
     }
 }

@@ -49,7 +49,7 @@ public class PaymentIntentController {
     }
 
     @PostMapping("/webhook")
-    public String handleStripeEvent(@RequestBody String payload,
+    public void handleStripeEvent(@RequestBody String payload,
                                     @RequestHeader("Stripe-Signature") String sigHeader) {
         String endpointSecret = this.endpointSecret;
 
@@ -63,26 +63,41 @@ public class PaymentIntentController {
             throw new RuntimeException("Invalid Signature");
         }
 
-        if ("payment_intent.succeeded".equals(event.getType())) {
-            PaymentIntent paymentIntent =
-                    (PaymentIntent) event.getDataObjectDeserializer().getObject().orElse(null);
-            if (paymentIntent != null) {
-                String email = paymentIntent.getReceiptEmail();
-                if (email != null) {
-                    userService.subscribeUser(email);
-                }
-            }
-        } else if ("payment_intent.payment_failed".equals(event.getType())) {
-            PaymentIntent paymentIntent =
-                    (PaymentIntent) event.getDataObjectDeserializer().getObject().orElse(null);
-            if (paymentIntent != null) {
-                String email = paymentIntent.getReceiptEmail();
-                if (email != null) {
-                    userService.unSubscribeUser(email);
-                }
+        processStripeEvent(event);
+    }
+
+    private void processStripeEvent(Event event) {
+        String eventType = event.getType();
+        if ("payment_intent.succeeded".equals(eventType)) {
+            handlePaymentSucceededEvent(event);
+        } else if ("payment_intent.payment_failed".equals(eventType)) {
+            handlePaymentFailedEvent(event);
+        }
+    }
+
+    private void handlePaymentSucceededEvent(Event event) {
+        PaymentIntent paymentIntent = extractPaymentIntent(event);
+        if (paymentIntent != null) {
+            String email = paymentIntent.getReceiptEmail();
+            if (email != null) {
+                userService.subscribeUser(email);
             }
         }
+    }
 
-        return "Event processed";
+    private void handlePaymentFailedEvent(Event event) {
+        PaymentIntent paymentIntent = extractPaymentIntent(event);
+        if (paymentIntent != null) {
+            String email = paymentIntent.getReceiptEmail();
+            if (email != null) {
+                userService.unSubscribeUser(email);
+            }
+        }
+    }
+
+    private PaymentIntent extractPaymentIntent(Event event) {
+        return (PaymentIntent) event.getDataObjectDeserializer()
+                .getObject()
+                .orElse(null);
     }
 }

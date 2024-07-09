@@ -10,7 +10,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Service
 public class WodWarriorSupportBot extends TelegramLongPollingBot {
-
+    private static final String BOT_USERNAME = "WODWarriorSupportService_bot";
+    private static final String BOT_TOKEN = "6423698407:AAGJgzLgam7ikM_J5orJy8fw4XD58YHYyB0";
+    private long adminChatId = 420725930;
     private boolean isBotRunning;
     private final Map<Long, Long> userToAdminMap = new HashMap<>();
 

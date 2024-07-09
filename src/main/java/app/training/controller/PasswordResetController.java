@@ -23,8 +23,7 @@ public class PasswordResetController {
     @PutMapping("/reset/{email}")
     @Operation(summary = "Restore user password by email",
             description = "Restore user password by email")
-    public String resetPassword(@PathVariable String email) {
+    public void resetPassword(@PathVariable String email) {
         passwordResetService.resetPassword(email);
-        return "Password successfully restored";
     }
 }

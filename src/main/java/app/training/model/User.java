@@ -27,7 +27,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Where(clause = "is_deleted=false")
 @Table(name = "users")
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

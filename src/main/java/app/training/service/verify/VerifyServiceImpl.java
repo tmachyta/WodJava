@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class VerifyServiceImpl implements VerifyService {
     private static final String STATUS = "Verified";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     private final UserRepository userRepository;
     private final EmailSenderService emailSenderService;
 
@@ -21,20 +22,35 @@ public class VerifyServiceImpl implements VerifyService {
                         new EntityNotFoundException("Can't find user by email " + email));
         existedUser.setStatus(STATUS);
         User savedUser = userRepository.save(existedUser);
+        String body = """
+                 Dear %s,
+                 
+                 Congratulations! Your account has been successfully verified.
+                 
+                 Welcome to the WODWarrior family! We're excited to have you on board 
+                 
+                 and can't wait to help you achieve your fitness goals.
+                 
+                 Here are some things you can do now:
+                 
+                 - Explore our exclusive training programs
+                 
+                 - Join live workout sessions
+                 
+                 - Access personalized fitness plans
+                 
+                 Thank you for choosing WODWarrior.
+                 
+                 Let's get started on your fitness journey!
+                 
+                 Best regards,
+                 
+                 The WODWarrior Team
+                 
+                """.formatted(existedUser.getFirstName()).replace("\n", LINE_SEPARATOR);
         emailSenderService.sendEmail(savedUser.getEmail(),
                 "WODWarrior - Verification Successful",
-                "Dear " + savedUser.getFirstName() + ",\n\n"
-                        + "Congratulations! Your account has been successfully verified.\n\n"
-                        + "Welcome to the WODWarrior family! We're excited to have you on board "
-                        + "and can't wait to help you achieve your fitness goals.\n\n"
-                        + "Here are some things you can do now:\n"
-                        + "- Explore our exclusive training programs\n"
-                        + "- Join live workout sessions\n"
-                        + "- Access personalized fitness plans\n\n"
-                        + "Thank you for choosing WODWarrior. "
-                        + "Let's get started on your fitness journey!\n\n"
-                        + "Best regards,\n"
-                        + "The WODWarrior Team");
+                body);
         return true;
     }
 }
