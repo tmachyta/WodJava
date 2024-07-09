@@ -54,37 +54,33 @@ public class AuthController {
     @PostMapping("/logout")
     @PermitAll
     @Operation(summary = "Logout", description = "Logout method")
-    public String logoutUser(HttpServletRequest request) {
+    public void logoutUser(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         String token = null;
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             token = bearerToken.substring(7);
         }
         validationService.blackListToken(token);
-        return "You have successfully logged out !!";
     }
 
     @PutMapping("/reset/{email}")
     @Operation(summary = "Restore user password by email",
             description = "Restore user password by email, with no auth")
-    public String resetPassword(@PathVariable String email) {
+    public void resetPassword(@PathVariable String email) {
         passwordResetService.resetPassword(email);
-        return "Password successfully restored";
     }
 
     @GetMapping("/check/{email}")
     @Operation(summary = "Check email", description = "Check if email is ready to use")
-    public String checkEmail(@PathVariable String email) {
+    public void checkEmail(@PathVariable String email) {
         userService.findUserByEmail(email);
-        return "Email is already in use";
     }
 
     @PutMapping("/verify/{email}")
     @Operation(summary = "Verify user email",
             description = "Verify user email by code")
-    public String verifyAcc(@PathVariable String email,
+    public void verifyAcc(@PathVariable String email,
                             @RequestParam("code") String code) {
         verifyService.isVerified(email);
-        return "Account successfully verified";
     }
 }

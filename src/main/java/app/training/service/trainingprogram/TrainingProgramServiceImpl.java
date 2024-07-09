@@ -28,7 +28,6 @@ public class TrainingProgramServiceImpl implements TrainingProgramService {
         return trainingProgramRepository.findAll(pageable)
                 .stream()
                 .map(trainingProgramMapper::toDto)
-                .limit(1)
                 .toList();
     }
 
@@ -69,5 +68,13 @@ public class TrainingProgramServiceImpl implements TrainingProgramService {
                 .stream()
                 .map(trainingProgramMapper::toDto)
                 .toList();
+    }
+
+    @Override
+    public TrainingProgramDto findByDate(LocalDate date) {
+        TrainingProgram trainingProgram = trainingProgramRepository.findByDate(date)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find program by date" + date));
+        return trainingProgramMapper.toDto(trainingProgram);
     }
 }

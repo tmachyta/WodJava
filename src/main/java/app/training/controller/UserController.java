@@ -14,6 +14,7 @@ import app.training.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -95,7 +96,8 @@ public class UserController {
     @Operation(summary = "Update user image by email",
             description = "Update available user image by email")
     public UserResponseDto updateUserImage(@PathVariable String email,
-                                           @RequestBody @Valid UserUpdateImageRequest request) {
+                                           @RequestBody @Valid UserUpdateImageRequest request)
+            throws IOException {
         return userService.updateImage(email, request);
     }
 
