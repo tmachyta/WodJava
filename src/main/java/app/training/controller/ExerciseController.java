@@ -2,7 +2,11 @@ package app.training.controller;
 
 import app.training.dto.exercise.CreateExerciseRequest;
 import app.training.dto.exercise.ExerciseDto;
+import app.training.dto.exercise.UpdateExerciseAboutRequest;
+import app.training.dto.exercise.UpdateExerciseImageRequest;
+import app.training.dto.exercise.UpdateExerciseNameRequest;
 import app.training.dto.exercise.UpdateExerciseRequest;
+import app.training.dto.exercise.UpdateExerciseSectionRequest;
 import app.training.service.exercise.ExerciseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -67,5 +71,41 @@ public class ExerciseController {
     public ExerciseDto updateById(@PathVariable Long id,
                                     @RequestBody UpdateExerciseRequest request) {
         return exerciseService.updateById(id, request);
+    }
+
+    @PutMapping("/name/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Exercise name by ID",
+            description = "Update valid Exercise name by ID")
+    public ExerciseDto updateExerciseName(@PathVariable Long id,
+                                  @RequestBody UpdateExerciseNameRequest request) {
+        return exerciseService.updateExerciseName(id, request);
+    }
+
+    @PutMapping("/about/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Exercise about by ID",
+            description = "Update valid Exercise about by ID")
+    public ExerciseDto updateExerciseAbout(@PathVariable Long id,
+                                  @RequestBody UpdateExerciseAboutRequest request) {
+        return exerciseService.updateExerciseAbout(id, request);
+    }
+
+    @PutMapping("/image/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Exercise image by ID",
+            description = "Update valid Exercise image by ID")
+    public ExerciseDto updateExerciseImage(@PathVariable Long id,
+                                  @RequestBody UpdateExerciseImageRequest request) {
+        return exerciseService.updateExerciseImage(id, request);
+    }
+
+    @PutMapping("/section/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Exercise section by ID",
+            description = "Update valid Exercise section by ID")
+    public ExerciseDto updateExerciseSection(@PathVariable Long id,
+                                  @RequestBody UpdateExerciseSectionRequest request) {
+        return exerciseService.updateExerciseSection(id, request);
     }
 }

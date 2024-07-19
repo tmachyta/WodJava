@@ -2,6 +2,10 @@ package app.training.controller;
 
 import app.training.dto.trainingprogram.CreateTrainingProgramRequest;
 import app.training.dto.trainingprogram.TrainingProgramDto;
+import app.training.dto.trainingprogram.UpdateTrainingProgramAboutRequest;
+import app.training.dto.trainingprogram.UpdateTrainingProgramDateRequest;
+import app.training.dto.trainingprogram.UpdateTrainingProgramImageRequest;
+import app.training.dto.trainingprogram.UpdateTrainingProgramNameRequest;
 import app.training.dto.trainingprogram.UpdateTrainingProgramRequest;
 import app.training.service.trainingprogram.TrainingProgramService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -87,5 +91,45 @@ public class TrainingProgramController {
             description = "Get valid Training Program by date")
     public TrainingProgramDto getByDate(@PathVariable LocalDate date) {
         return trainingProgramService.findByDate(date);
+    }
+
+    @PutMapping("/name/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Program Name by ID",
+            description = "Update valid Training Program Name by ID")
+    public TrainingProgramDto updateProgramName(@PathVariable Long id,
+                                                @RequestBody
+                                                UpdateTrainingProgramNameRequest request) {
+        return trainingProgramService.updateTrainingProgramName(id, request);
+    }
+
+    @PutMapping("/about/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Program about by ID",
+            description = "Update valid Training Program about by ID")
+    public TrainingProgramDto updateProgramAbout(@PathVariable Long id,
+                                                 @RequestBody
+                                                 UpdateTrainingProgramAboutRequest request) {
+        return trainingProgramService.updateTrainingProgramAbout(id, request);
+    }
+
+    @PutMapping("/date/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Program date by ID",
+            description = "Update valid Training Program date by ID")
+    public TrainingProgramDto updateProgramDate(@PathVariable Long id,
+                                                @RequestBody
+                                                UpdateTrainingProgramDateRequest request) {
+        return trainingProgramService.updateTrainingProgramByDate(id, request);
+    }
+
+    @PutMapping("/image/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Program image by ID",
+            description = "Update valid Training Program image by ID")
+    public TrainingProgramDto updateProgramImage(@PathVariable Long id,
+                                                 @RequestBody
+                                                 UpdateTrainingProgramImageRequest request) {
+        return trainingProgramService.updateTrainingProgramImage(id, request);
     }
 }
