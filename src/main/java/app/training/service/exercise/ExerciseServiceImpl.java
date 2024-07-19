@@ -2,7 +2,11 @@ package app.training.service.exercise;
 
 import app.training.dto.exercise.CreateExerciseRequest;
 import app.training.dto.exercise.ExerciseDto;
+import app.training.dto.exercise.UpdateExerciseAboutRequest;
+import app.training.dto.exercise.UpdateExerciseImageRequest;
+import app.training.dto.exercise.UpdateExerciseNameRequest;
 import app.training.dto.exercise.UpdateExerciseRequest;
+import app.training.dto.exercise.UpdateExerciseSectionRequest;
 import app.training.exception.EntityNotFoundException;
 import app.training.mapper.ExerciseMapper;
 import app.training.model.Exercise;
@@ -64,5 +68,50 @@ public class ExerciseServiceImpl implements ExerciseService {
         existedExercise.setAbout(request.getAbout());
         existedExercise.setImageData(request.getImageData());
         return exerciseMapper.toDto(exerciseRepository.save(existedExercise));
+    }
+
+    @Override
+    public ExerciseDto updateExerciseName(Long id, UpdateExerciseNameRequest request) {
+        Exercise existedExercise = exerciseRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find exercise by id " + id));
+        existedExercise.setName(request.getName());
+        Exercise savedExercise = exerciseRepository.save(existedExercise);
+        return exerciseMapper.toDto(savedExercise);
+    }
+
+    @Override
+    public ExerciseDto updateExerciseAbout(Long id, UpdateExerciseAboutRequest request) {
+        Exercise existedExercise = exerciseRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find exercise by id " + id));
+        existedExercise.setAbout(request.getAbout());
+        Exercise savedExercise = exerciseRepository.save(existedExercise);
+        return exerciseMapper.toDto(savedExercise);
+    }
+
+    @Override
+    public ExerciseDto updateExerciseImage(Long id, UpdateExerciseImageRequest request) {
+        Exercise existedExercise = exerciseRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find exercise by id " + id));
+        existedExercise.setImageData(request.getImageData());
+        Exercise savedExercise = exerciseRepository.save(existedExercise);
+        return exerciseMapper.toDto(savedExercise);
+    }
+
+    @Override
+    public ExerciseDto updateExerciseSection(Long id, UpdateExerciseSectionRequest request) {
+        Exercise existedExercise = exerciseRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find exercise by id " + id));
+        TrainingSection trainingSection =
+                trainingSectionRepository.findById(request.getTrainingSectionId())
+                        .orElseThrow(() ->
+                                new EntityNotFoundException("Can't find seciton by id "
+                                        + request.getTrainingSectionId()));
+        existedExercise.setTrainingSection(trainingSection);
+        Exercise savedExercise = exerciseRepository.save(existedExercise);
+        return exerciseMapper.toDto(savedExercise);
     }
 }

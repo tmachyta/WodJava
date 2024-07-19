@@ -2,6 +2,10 @@ package app.training.service.trainingprogram;
 
 import app.training.dto.trainingprogram.CreateTrainingProgramRequest;
 import app.training.dto.trainingprogram.TrainingProgramDto;
+import app.training.dto.trainingprogram.UpdateTrainingProgramAboutRequest;
+import app.training.dto.trainingprogram.UpdateTrainingProgramDateRequest;
+import app.training.dto.trainingprogram.UpdateTrainingProgramImageRequest;
+import app.training.dto.trainingprogram.UpdateTrainingProgramNameRequest;
 import app.training.dto.trainingprogram.UpdateTrainingProgramRequest;
 import app.training.exception.EntityNotFoundException;
 import app.training.mapper.TrainingProgramMapper;
@@ -76,5 +80,53 @@ public class TrainingProgramServiceImpl implements TrainingProgramService {
                 .orElseThrow(() ->
                         new EntityNotFoundException("Can't find program by date" + date));
         return trainingProgramMapper.toDto(trainingProgram);
+    }
+
+    @Override
+    public TrainingProgramDto updateTrainingProgramByDate(
+            Long id,
+            UpdateTrainingProgramDateRequest request) {
+        TrainingProgram existedTrainingProgram = trainingProgramRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find training program by id " + id));
+        existedTrainingProgram.setDate(request.getDate());
+        TrainingProgram savedProgram = trainingProgramRepository.save(existedTrainingProgram);
+        return trainingProgramMapper.toDto(savedProgram);
+    }
+
+    @Override
+    public TrainingProgramDto updateTrainingProgramName(
+            Long id,
+            UpdateTrainingProgramNameRequest request) {
+        TrainingProgram existedTrainingProgram = trainingProgramRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find training program by id " + id));
+        existedTrainingProgram.setName(request.getName());
+        TrainingProgram savedProgram = trainingProgramRepository.save(existedTrainingProgram);
+        return trainingProgramMapper.toDto(savedProgram);
+    }
+
+    @Override
+    public TrainingProgramDto updateTrainingProgramAbout(
+            Long id,
+            UpdateTrainingProgramAboutRequest request) {
+        TrainingProgram existedTrainingProgram = trainingProgramRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find training program by id " + id));
+        existedTrainingProgram.setAbout(request.getAbout());
+        TrainingProgram savedProgram = trainingProgramRepository.save(existedTrainingProgram);
+        return trainingProgramMapper.toDto(savedProgram);
+    }
+
+    @Override
+    public TrainingProgramDto updateTrainingProgramImage(
+            Long id,
+            UpdateTrainingProgramImageRequest request) {
+        TrainingProgram existedTrainingProgram = trainingProgramRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("Can't find training program by id " + id));
+        existedTrainingProgram.setImageData(request.getImageData());
+        TrainingProgram savedProgram = trainingProgramRepository.save(existedTrainingProgram);
+        return trainingProgramMapper.toDto(savedProgram);
     }
 }

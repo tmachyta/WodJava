@@ -2,6 +2,9 @@ package app.training.controller;
 
 import app.training.dto.trainingsection.CreateTrainingSectionRequest;
 import app.training.dto.trainingsection.TrainingSectionDto;
+import app.training.dto.trainingsection.UpdateTrainingSectionImageRequest;
+import app.training.dto.trainingsection.UpdateTrainingSectionNameRequest;
+import app.training.dto.trainingsection.UpdateTrainingSectionProgramRequest;
 import app.training.dto.trainingsection.UpdateTrainingSectionRequest;
 import app.training.service.trainingsection.TrainingSectionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -68,5 +71,32 @@ public class TrainingSectionController {
     public TrainingSectionDto updateById(@PathVariable Long id,
                                   @RequestBody UpdateTrainingSectionRequest request) {
         return trainingSectionService.updateById(id, request);
+    }
+
+    @PutMapping("/name/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Section name by ID",
+            description = "Update valid Training Section name by ID")
+    public TrainingSectionDto updateSectionName(@PathVariable Long id,
+                                         @RequestBody UpdateTrainingSectionNameRequest request) {
+        return trainingSectionService.updateTrainingSectionName(id, request);
+    }
+
+    @PutMapping("/image/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Section image by ID",
+            description = "Update valid Training Section image by ID")
+    public TrainingSectionDto updateSectionImage(@PathVariable Long id,
+                                         @RequestBody UpdateTrainingSectionImageRequest request) {
+        return trainingSectionService.updateTrainingSectionImage(id, request);
+    }
+
+    @PutMapping("/program/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @Operation(summary = "Update Training Section program by ID",
+            description = "Update valid Training Section program by ID")
+    public TrainingSectionDto updateSectionProgram(@PathVariable Long id,
+                                         @RequestBody UpdateTrainingSectionProgramRequest request) {
+        return trainingSectionService.updateTrainingSectionProgram(id, request);
     }
 }
