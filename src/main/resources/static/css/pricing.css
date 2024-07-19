@@ -84,28 +84,6 @@ body {
     padding: 8px;
 }
 
-/* GOWOD */
-.gowod-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    align-items: center;
-}
-
-.column h2 {
-    display: flex;
-    align-items: center;
-    margin: 0;
-}
-
-.gowod-logo {
-    width: 80px;
-    height: auto;
-    margin-right: 15px;
-    border-radius: 8px;
-    display: inline-block;
-}
-
 /* Menu Toggle Button */
 .menu-toggle {
     display: none; /* Initially hidden, shown on mobile */
