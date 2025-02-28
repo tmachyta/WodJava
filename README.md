@@ -2,9 +2,9 @@
 # ✈🏃🏻‍♂️🏃🏻‍♂️WODWarrior✈🏃🏻‍♂️🏃🏻‍♂️
 
 # Project Description:
-WODWarrior is an intuitive iOS application using Swift Data designed to help fitness enthusiasts achieve their goals with personalized gym training programs/crossfit training programs. 
-Whether you're a beginner looking to get started or an experienced athlete aiming to reach new heights, 
-WODWarrior offers a variety of training plans to suit all fitness levels and objectives.
+WODWarrior is a CrossFit training application designed to help users manage and track their workouts effectively. The app provides a seamless user experience with a SwiftUI frontend and a robust Java, Hibernate, and Spring backend.
+
+For user support, WODWarrior features an integrated Telegram bot, allowing quick assistance and interaction. Additionally, Stripe API is implemented to handle subscriptions and payments securely.
 
 ## Setup
 
