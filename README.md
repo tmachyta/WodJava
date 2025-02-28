@@ -14,12 +14,28 @@ To set up the project, follow these steps:
 
 Make sure you have the following software installed on your system:
 
-- IOS (JDK) 16 or higher
-- Xcode
+- Java Development Kit (JDK) 17 or higher
+- Apache Maven
+- Apache Tomcat vesion 9 or higher
+- DataBase: PostgresSQL
+- docker
+- liquibase
 
 ### Installation
 - First of all, you should made your fork
-- Second, clink on ZIP download, after that open this project in your Xcode
+- Second, clink on Code<> and clone link, after that open your Intellij Idea, click on Get from VCS
+- past link, which you clone later
+
+### Replace Placeholders:
+To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in .env and application.properties
+- Open package resources and open file env and application.properties in your project.
+- Locate the placeholders that need to be replaced.
+- These placeholders might include values such as
+- spring.datasource.username=$POSTGRES_USER -> replace with your Postgres
+- spring.datasource.password=$POSTGRES_PASSWORD -> replace with your password Postgres
+- stripe.secretKey=your_stripe_secret_key -> replace your stripe secret key
+- telegram.botToken=your_bot_token -> replace with your telegram bot token
+- telegram.chatId=your_chat_id -> replace with your telegram chat id
 
 # Features 🤌:
 
