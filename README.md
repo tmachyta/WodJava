@@ -41,35 +41,56 @@ To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in a
 ## User  🤵‍♂️
 - Registration like a user
 - Authentication like a user
-- Create/update/remove a user
-- Display all users
+- Logout from app
+- Reset password
+- Verify Email
+- Get all users
 - Update user role by email
 - Update user role by id
 - Find user by id
+- Delete user by id
+- Find user by email
+- Update user image by email
+- Update user name by email
+- Update user last-name by email
+- Delete user by email
+- Update user password by email
+- Update user birthday by email
 
-## Car 🏎
-- Create/update/remove a car
-- Find car by id
-- Display all available cars
+## TrainingProgram 🏃‍♂️
+- Create a new training program
+- Get all training pograms
+- Get training program by id
+- Soft-delete training program by id
+- Update training program by ID
+- Get all training programs by date
+- Get program by date
+- Update training program name by id
+- Update training program about by id
+- Update training program date by id
+- Update training program image by id
 
-## Payment 💵
-- Create/update/remove a payment
-- Display all payments
-- Find payment by id
-- Find payment by rental id
-- Find payment by user id
-- Create payment session
-- Check successful payment
-- Handle canceled payment
+## TrainingSection
+- Create a new training section
+- Get all training sections
+- Get training section by id
+- Soft-delete training section by id
+- Update training section by id
+- Update training section name by id
+- Update training section image by id 
+- Update training section program by id
 
-## Rental 💵
-- Display all rentals
-- Find rental by id
-- Find rental by car id
-- Find rental by user id
-- Return rental
-- Create/update/remove a rental
-
+## Exercise
+- Create a new exercise
+- Get all exercises
+- Get exercise by id
+- Soft-delete exercise by id
+- Update exercise by id
+- Update exercise name by id
+- Update exercise about by id
+- Update exercise image by id
+- Update exercise section by id
+  
 ## Role 🙎‍♂️
 - Create/update/remove a role
 - Get role by roleName
@@ -77,15 +98,11 @@ To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in a
 # Controllers 🕹
 
 ## Auth
-- Post - /register
-- Post - /login
-
-## Car
-- Get | display all cars - /cars
-- Post | add car to repository - /cars
-- Get | find car by id - /cars/{id}
-- Delete | soft delete car by id - /cars{id}
-- Put | update - /cars{id}
+- Post | register user - /register
+- Post | login user - /login
+- Post | logout from app  - /logout
+- Put | reset password - /reset/{email}
+- Get | verify email - /verify/{email}
 
 ## User
 - Get | display all users - /users
@@ -94,22 +111,44 @@ To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in a
 - Put | update user information by id - /users/me/{id}
 - Put | update user role by id - /users/role/{id}
 - Put | update user role by email - /users/role/{email}
+- Put | update user by email - /users/me/{email}
+- Put | update user image by email - /users/me/image/{email}
+- Put | update user name by email - /users/me/name/{email}
+- Put | update user last-name by email - /users/me/last-name/{email}
+- Delete | delete user by email - /users/me/{email}
+- Put | Update user password by email - /users/me/password/{email}
+- Put | Update user birthday by email - /users/me/birthday/{email}
 
-## Rental
-- Get | display all rentals - /rentals
-- Post | save rental to repositort - /rentals
-- Get | find rental by id - /rentals/{id}
-- Get | find rental by car id - /rentals/car/{id}
-- Get | find rental by user id - /rentals/user/{id}
-- Put | update rental by id - /rentals/{id}
-- Delete | soft delete by id - /rentals/{id}
+## TrainingProgram 
+- Post | Create a new training program - /programs
+- Get | Get all training pograms - /programs
+- Get | Get training program by id /programs/{id}
+- Delete | Soft-delete training program by id - /programs/{id}
+- Put | Update training program by ID - /programs/{id}
+- Get | Get all training programs by date - /programs/by-date/{date}
+- Get | Get program by date - /programs/program-by-date/{date}
+- Put | Update training program name by id - /programs/name/{id}
+- Put | Update training program about by id - /programs/about/{id}
+- Put | Update training program date by id - /programs/date/{id}
+- Put | Update training program image by id - /programs/image/{id}
 
-## Payment
-- Get | display all payments - /payments
-- Post | save payment to repository - /payments
-- Get | find payment by id - /payments/{id}
-- Get | find payment by rental id - /payments/rental/{id}
-- Get | find payment by user id - /payments/user/{id}
-- Post | create success payment session - /payments/create-session
-- Get | get success payment session - /payments/success
-- Get | get cancel payment by id - /payments/cancel/{id}
+## TrainingSection
+- Post | Create a new training section - /sections
+- Get | Get all training sections - /sections
+- Get | Get training section by id - /sections/{id}
+- Delete | Soft-delete training section by id - /sections/{id}
+- Put | Update training section by id - /sections/{id}
+- Put | Update training section name by id /sections/name/{id}
+- Put | Update training section image by id /sections/image/{id}
+- Put | Update training section program by id /sections/program/{id}
+
+## Exercise
+- Post | Create a new exercise - /exercises
+- Get | Get all exercises - /exercises
+- Get | Get exercise by id - /exercises/{id}
+- Delete | Soft-delete exercise by id - /exercises/{id}
+- Put | Update exercise by id - /exercises/{id}
+- Put | Update exercise name by id - /exercises/name/{id}
+- Put | Update exercise about by id - /exercises/about/{id}
+- Put | Update exercise image by id - /exercises/image/{id}
+- Put | Update exercise section by id - /exercises/section/{id}
