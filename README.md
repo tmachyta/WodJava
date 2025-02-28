@@ -90,6 +90,18 @@ To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in a
 - Update exercise about by id
 - Update exercise image by id
 - Update exercise section by id
+
+## Video
+- Create a new video
+- Get all videos
+- Get video by id
+- Soft-delete video by id
+
+## PasswordReset
+- Reset password by email
+
+## Support
+- Send email to support
   
 ## Role 🙎‍♂️
 - Create/update/remove a role
@@ -152,3 +164,26 @@ To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in a
 - Put | Update exercise about by id - /exercises/about/{id}
 - Put | Update exercise image by id - /exercises/image/{id}
 - Put | Update exercise section by id - /exercises/section/{id}
+
+## Video
+- Post | Create a new video - /videos
+- Get | Get all videos - /videos
+- Get | Get video by id - /videos{id}
+- Delete | Soft-delete video by id - /videos/{id}
+
+## PasswordReset
+- Put | Reset password by email - /password/reset/{email}
+
+## Support
+- Post | Send email to support - /support/{email}
+
+## Another Pages And Controllers 📄
+- PaymentIntentController
+- HomeController
+- PartnersController
+- PricingController
+- SubscriptionController
+- checkout.html
+- home.html
+- partners.html
+- pricing.html
