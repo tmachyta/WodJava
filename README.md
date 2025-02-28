@@ -38,27 +38,78 @@ To connect to your DB, Telegram and Stripe, you should replace PlaceHolders in a
 
 # Features 🤌:
 
-## 🏢 WODWarriors  🏢
-WODWarriors provides a different functions. 
-- Create a new training program
-- Create a new training seciton
-- Create exercise
-- Display all programs
-- Display all sections
-- Display all exercises
-- Delete programs
-- Update programs
-- Delete sections
-- Delete exercises
-- Add video to exercise
+## User  🤵‍♂️
+- Registration like a user
+- Authentication like a user
+- Create/update/remove a user
+- Display all users
+- Update user role by email
+- Update user role by id
+- Find user by id
+
+## Car 🏎
+- Create/update/remove a car
+- Find car by id
+- Display all available cars
+
+## Payment 💵
+- Create/update/remove a payment
+- Display all payments
+- Find payment by id
+- Find payment by rental id
+- Find payment by user id
+- Create payment session
+- Check successful payment
+- Handle canceled payment
+
+## Rental 💵
+- Display all rentals
+- Find rental by id
+- Find rental by car id
+- Find rental by user id
+- Return rental
+- Create/update/remove a rental
+
+## Role 🙎‍♂️
+- Create/update/remove a role
+- Get role by roleName
 
 # Controllers 🕹
-Let's talk about program:
 
-- Upon opening the training section, you'll be presented with a stack of cards, each representing a different type of program (Gymnastics, Olympic Lifts, Strong - including Squats, Bench Press, Deadlift - Cardio, WOD, AMRAP).
+## Auth
+- Post - /register
+- Post - /login
 
-- Swiping a card to the right navigates you to the training section where you can view various subsections like Warm Up, WOD, etc. Swiping a card to the left temporarily removes it from the stack for 10 seconds before it returns.
+## Car
+- Get | display all cars - /cars
+- Post | add car to repository - /cars
+- Get | find car by id - /cars/{id}
+- Delete | soft delete car by id - /cars{id}
+- Put | update - /cars{id}
 
-- In the training section, you can select a subsection to explore a variety of exercises. Tapping on an exercise will take you to a detailed page that includes a description and a video demonstrating how to perform the exercise.
+## User
+- Get | display all users - /users
+- Delete | soft delete user by id - /users/{id}
+- Get | find user information by id - /users/me/{id}
+- Put | update user information by id - /users/me/{id}
+- Put | update user role by id - /users/role/{id}
+- Put | update user role by email - /users/role/{email}
 
-- Additionally, I developed a VideoPicker feature that allows you to save videos using Swift Data.
+## Rental
+- Get | display all rentals - /rentals
+- Post | save rental to repositort - /rentals
+- Get | find rental by id - /rentals/{id}
+- Get | find rental by car id - /rentals/car/{id}
+- Get | find rental by user id - /rentals/user/{id}
+- Put | update rental by id - /rentals/{id}
+- Delete | soft delete by id - /rentals/{id}
+
+## Payment
+- Get | display all payments - /payments
+- Post | save payment to repository - /payments
+- Get | find payment by id - /payments/{id}
+- Get | find payment by rental id - /payments/rental/{id}
+- Get | find payment by user id - /payments/user/{id}
+- Post | create success payment session - /payments/create-session
+- Get | get success payment session - /payments/success
+- Get | get cancel payment by id - /payments/cancel/{id}
